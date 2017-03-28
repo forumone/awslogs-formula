@@ -1,6 +1,6 @@
-**ofs.mount**
+**awslogs**
 ====
-*Set up ObjectiveFS mounts*
+*awslogs utility for cloudwatch logs*
 
 
 
