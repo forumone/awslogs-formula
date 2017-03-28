@@ -1,0 +1,9 @@
+# Example pillar data for awslogs config
+
+awslogs:
+  syslog:
+    file: /var/log/messages
+    logstream_name: {instance_id}
+  accesslog:
+    file: /var/log/nginx/site.log
+
