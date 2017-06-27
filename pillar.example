@@ -11,9 +11,15 @@ awslogs:
       file: /var/log/messages
       logstream_name: {instance_id}
       datetime_format: '%b %d %H:%M:%S'
+      loggroup: {{ grains['id'] }}
+      logstream: syslog-{instance_id}
     accesslog:
       file: /var/log/nginx/site.log
-      datetime_format: '%d/%b/%Y:%H:%M:%S'
+      datetime_format: '%d/%b/%Y:%H:%M:%S %z'
+      loggroup: {{ grains['id'] }}
+      logstream: nginx-accesslog-{instance_id}
     errorlog:
       file: /var/log/nginx/error.log
-      datetime_format: '%Y/%b/%d %H:%M:%S'
+      datetime_format: '%Y/%m/%d %H:%M:%S'
+      loggroup: {{ grains['id'] }}
+      logstream: nginx-errors-{instance_id}

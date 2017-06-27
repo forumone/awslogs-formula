@@ -1,4 +1,9 @@
 # AWS Cloudwatch Logs
+# set role grains
+set-awslogs-role:
+  grains.list_present:
+    - name: roles
+    - value: awslogs
 
 # install package - on amazon linux
 awslogs:
