@@ -31,7 +31,7 @@ set-awslogs-role:
 
 awslogs-service:
   service:
-    - name: awslogs
+    - name: awslogsd
     - running
     - enable: True
     - watch:
