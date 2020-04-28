@@ -16,12 +16,14 @@ set-awslogs-role:
 /etc/awslogs/awslogs.conf:
   file.managed:
     - source: salt://awslogs/files/awslogs.conf
+    - template: jinja
     - require:
       - pkg: awslogs
 
 /etc/awslogs/awscli.conf:
   file.managed:
     - source: salt://awslogs/files/awscli.conf
+    - template: jinja
     - require:
       - pkg: awslogs
 
@@ -37,7 +39,7 @@ awslogs-service:
       - file: /etc/awslogs/awscli.conf
     - require:
       - pkg: awslogs
-{% elif grains['osmajorrelease'] == '2' %}
+{% elif grains['osmajorrelease'] == '2'%}
 awslogs-service:
   service:
     - name: awslogsd
