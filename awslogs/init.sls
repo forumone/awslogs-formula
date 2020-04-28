@@ -10,7 +10,7 @@ set-awslogs-role:
     - name: roles
     - value: awslogs
     - require:
-      - awslogs
+      - pkg: awslogs
 
 # Template - loops over all defined pillar entries
 /etc/awslogs/awslogs.conf:
@@ -18,14 +18,14 @@ set-awslogs-role:
     - source: salt://awslogs/files/awslogs.conf
     - template: jinja
     - require:
-      - awslogs
+      - pkg: awslogs
 
 /etc/awslogs/awscli.conf:
   file.managed:
     - source: salt://awslogs/files/awscli.conf
     - template: jinja
     - require:
-      - awslogs
+      - pkg: awslogs
 
 # Start service, restart on addition of services
 {% if grains['osmajorrelease'] == '2018' %}
@@ -38,7 +38,7 @@ awslogs-service:
       - file: /etc/awslogs/awslogs.conf
       - file: /etc/awslogs/awscli.conf
     - require:
-      - awslogs
+      - pkg: awslogs
 {% elif grains['osmajorrelease'] == '2' %}
 awslogs-service:
   service:
@@ -49,5 +49,5 @@ awslogs-service:
       - file: /etc/awslogs/awslogs.conf
       - file: /etc/awslogs/awscli.conf
     - require:
-      - awslogs
+      - pkg: awslogs
 {% endif %}
