@@ -6,7 +6,7 @@ awslogs:
 
 # set role grains
 set-awslogs-role:
-  grains.list_present:
+  grains.present:
     - name: roles
     - value: awslogs
     - require:
@@ -16,14 +16,12 @@ set-awslogs-role:
 /etc/awslogs/awslogs.conf:
   file.managed:
     - source: salt://awslogs/files/awslogs.conf
-    - template: jinja
     - require:
       - pkg: awslogs
 
 /etc/awslogs/awscli.conf:
   file.managed:
     - source: salt://awslogs/files/awscli.conf
-    - template: jinja
     - require:
       - pkg: awslogs
 
