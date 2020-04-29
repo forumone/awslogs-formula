@@ -6,7 +6,7 @@ awslogs:
 
 # set role grains
 set-awslogs-role:
-  grains.exists:
+  grains.present:
     - name: roles
     - value: awslogs
     - require:
